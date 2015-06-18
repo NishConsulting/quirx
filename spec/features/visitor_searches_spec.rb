@@ -1,8 +1,11 @@
 require 'capybara/rspec'
+require 'capybara/poltergeist'
 require 'app'
 
+Capybara.javascript_driver = :poltergeist
+Capybara.app = App
+
 describe 'visitor searches', :js, type: :feature do
-  before { Capybara.app = App }
   it 'sees a count' do
     visit '/'
     fill_in 'Search', with: 'engorged'

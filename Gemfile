@@ -9,7 +9,7 @@ gem 'rake'
 group :test do
   gem 'rspec'
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'poltergeist'
 end
 
 group :development, :test do
