@@ -13,5 +13,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'rake'
+  gem 'dotenv'
   gem 'pry'
 end
