@@ -27,5 +27,18 @@ begin
   task ci: %i[serve_frontend ensure_rack spec]
 
   task default: :spec
+
+  namespace :deploy do
+    task frontend: :dotenv do
+      sh("cd frontend && npm run pack")
+      sh("cp frontend/templates/dev/index.html frontend/build")
+      sh("git co gh-pages")
+      sh("cp -r frontend/build/* .")
+      sh("git add -A")
+      sh("git commit -m'deploy frontend'")
+      sh("git push -f origin gh-pages")
+      sh("git co -")
+    end
+  end
 rescue LoadError
 end
