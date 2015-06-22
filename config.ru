@@ -1,7 +1,7 @@
 require 'pathname'
-root = Pathname(__FILE__).dirname
-require root.join('lib/app')
+$:.unshift Pathname(__FILE__).dirname.join 'lib'
+require 'quirx/app'
 
 map '/' do
-  run App
+  run Quirx::App.new
 end
