@@ -1,15 +1,13 @@
+require 'spec_helper'
 require 'capybara/rspec'
-require 'capybara/poltergeist'
-require 'app'
 
-Capybara.javascript_driver = :poltergeist
-Capybara.app = App
+Capybara.app_host = ENV['ALLOW_ORIGIN']
 
 describe 'visitor searches', :js, type: :feature do
   it 'sees a count' do
     visit '/'
-    fill_in 'Search', with: 'engorged'
+    fill_in 'Search', with: 'adderall'
     click_on 'Search'
-    expect(page).to have_content '100 events matched "engorged"'
+    expect(page).to have_content '2178 events matched "adderall"'
   end
 end

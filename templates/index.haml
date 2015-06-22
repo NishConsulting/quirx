@@ -1,11 +1,14 @@
 !!!
 %html
   %head
+    %script(type='text/javascript'){src: js_url}
     %title Qui&#8478;
   %body
+    #content
+
     %form
       %label(for='search') Search
-      %input(type='text' name='search' id='search')
+      %input#search(type='text' name='search')
       %button Search
 
     %p 100 events matched "engorged"
