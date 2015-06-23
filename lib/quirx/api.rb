@@ -1,4 +1,5 @@
 require 'json'
+require 'quirx/event'
 
 module Quirx
   class API
@@ -12,7 +13,7 @@ module Quirx
       u = uri.dup
       u.query = [uri.query, "search=#{search_clause(q)}", 'count=receivedate'].join('&')
       results = Net::HTTP.get(u)
-      JSON.parse(Net::HTTP.get(u)).fetch("results", [])
+      JSON.parse(Net::HTTP.get(u)).fetch("results", []).map(&Event.method(:new))
     end
 
     private
