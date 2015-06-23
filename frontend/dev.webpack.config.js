@@ -131,8 +131,7 @@ module.exports = {
         /node_modules[\\\/]react(-router)?[\\\/]/,
       ]
     },
-    hot: false,
-    quiet: true
+    hot: true
   },
 
   eslint: {

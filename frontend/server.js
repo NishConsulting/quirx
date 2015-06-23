@@ -4,8 +4,7 @@ var config = require('./dev.webpack.config');
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
-  hot: false,
-  quiet: true,
+  hot: true,
   historyApiFallback: {
     index: './templates/dev/index.html'
   }
