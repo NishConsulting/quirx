@@ -39,6 +39,12 @@ begin
       sh("git push -f origin gh-pages")
       sh("git co -")
     end
+
+    task :backend do
+      sh("git push -f heroku master")
+    end
+
   end
+  task deploy: %i[deploy:frontend deploy:backend]
 rescue LoadError
 end
