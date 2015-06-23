@@ -1,4 +1,6 @@
 import React from 'react';
+import Chart from 'chart';
+
 
 let get = function (url, query) {
   return new Promise(function (fulfill, reject) {
@@ -34,6 +36,7 @@ let App = React.createClass({
         <input type='submit' value='Search' />
       </form>
       <p>{this.state.events.length} events matched "{this.state.term}"</p>
+      <Chart data={this.state.events}/>
       </main>
     );
   }
