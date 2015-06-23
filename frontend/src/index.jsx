@@ -36,7 +36,7 @@ let App = React.createClass({
         <input type='submit' value='Search' />
       </form>
       <p>{this.state.events.length} events matched "{this.state.term}"</p>
-      <Chart data={this.state.events}/>
+      <Chart data={this.state.events} term={this.state.term}/>
       </main>
     );
   }
