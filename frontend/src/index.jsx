@@ -16,18 +16,36 @@ let get = function (url, query) {
 };
 
 let App = React.createClass({
-  getInitialState: function () {
-    return {events: [], term: ''};
+  getInitialState() {
+    return {events: [], term: '', requests: 0};
   },
-  search: function (e) {
+  search(e) {
     e.preventDefault();
     let term = e.target.search.value;
-    this.setState({term: term});
+    this.setState({term: term, requests: this.state.requests + 1});
     get(`${API_URL}/events.json?q=${term}`).then(function (response) {
-      this.setState({events: response.events});
+      this.setState({events: response.events, requests: this.state.requests - 1});
     }.bind(this));
   },
-  render: function () {
+  chart() {
+    let chart = '';
+    if (this.state.events.length && this.state.requests === 0) {
+      chart = (
+          <Chart data={this.state.events} term={this.state.term}/>
+      );
+    }
+    return chart;
+  },
+  summary() {
+    let summary;
+    if (this.state.requests > 0) {
+      summary = (<p>Searching for "{this.state.term}" &hellip;</p>);
+    } else if (this.state.term) {
+      summary = (<p>{this.state.events.length} events matched "{this.state.term}"</p>);
+    }
+    return summary;
+  },
+  render() {
     return (
       <main>
       <form onSubmit={this.search}>
@@ -35,8 +53,10 @@ let App = React.createClass({
         <input id='search' type='search' autoFocus />
         <input type='submit' value='Search' />
       </form>
-      <p>{this.state.events.length} events matched "{this.state.term}"</p>
-      <Chart data={this.state.events} term={this.state.term}/>
+      <section id='results'>
+      {this.summary()}
+      {this.chart()}
+      </section>
       </main>
     );
   }
