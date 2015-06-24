@@ -46,13 +46,18 @@ begin
       sh("rm -rf frontend/build")
     end
 
-    task :commit do
-      sh("git co gh-pages")
-      sh("cp -r frontend/build/* .")
-      sh("git add -A")
-      sh("git commit -m 'deploy frontend'")
-      sh("git push -f origin gh-pages")
-      sh("git co -")
+    task :clone do
+      sh("git clone -b gh-pages git@github.com:hashrocketeer/quirx.git temp-gh-pages")
+    end
+
+    task commit: :clone do
+      Dir.chdir 'temp-gh-pages' do
+        sh("cp -r ../frontend/build/* .")
+        sh("git add -A")
+        sh("git commit -m 'deploy frontend'")
+        sh("git push")
+      end
+      sh("rm -rf temp-gh-pages")
     end
   end
 
