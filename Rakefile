@@ -29,22 +29,33 @@ begin
   task default: :spec
 
   namespace :deploy do
-    task frontend: :dotenv do
-      sh("cd frontend && npm run pack")
-      sh("cp frontend/templates/dev/index.html frontend/build")
-      sh("git co gh-pages")
-      sh("cp -r frontend/build/* .")
-      sh("git add -A")
-      sh("git commit -m'deploy frontend'")
-      sh("git push -f origin gh-pages")
-      sh("git co -")
-    end
+    task frontend: %i[frontend:clean frontend:build frontend:commit]
 
     task :backend do
       sh("git push -f heroku master")
     end
 
   end
+
+  namespace :frontend do
+    task build: :dotenv do
+      sh("cd frontend && npm run pack")
+    end
+
+    task :clean do
+      sh("rm -rf frontend/build")
+    end
+
+    task :commit do
+      sh("git co gh-pages")
+      sh("cp -r frontend/build/* .")
+      sh("git add -A")
+      sh("git commit -m 'deploy frontend'")
+      sh("git push -f origin gh-pages")
+      sh("git co -")
+    end
+  end
+
   task deploy: %i[deploy:frontend deploy:backend]
 rescue LoadError
 end
