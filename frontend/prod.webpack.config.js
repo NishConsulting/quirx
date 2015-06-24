@@ -6,19 +6,20 @@
 
 var webpack = require('webpack');
 var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   output: {
     path: path.join(__dirname, 'build', 'assets'),
-    publicPath: '/assets/',
-    filename: "[name].js",
+    publicPath: '/quirx/assets/',
+    filename: "[name]-[hash].js",
     chunkFilename: "[id].chunk.[hash].js",
     pathinfo: true
   },
 
   cache: true,
   debug: false,
-  devtool: 'eval',
+  devtool: false,
   entry: {
     main: [
       './src/index.jsx'
@@ -89,6 +90,17 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: { warnings: false }
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new HtmlWebpackPlugin({
+      template: './templates/prod/index.html',
+      filename: '../index.html',
+      inject: 'body'
+    }),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify('production')

@@ -1,7 +1,6 @@
 import React from 'react';
 import Chart from 'chart';
 
-
 let get = function (url, query) {
   return new Promise(function (fulfill, reject) {
     let request = new XMLHttpRequest();
