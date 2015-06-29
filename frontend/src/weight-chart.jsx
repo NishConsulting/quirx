@@ -3,11 +3,11 @@ import _ from 'lodash';
 import Highcharts from 'react-highcharts';
 
 let WeightChart = React.createClass({
-  shouldComponentUpdate(props, state) {
-    return !_.isEqual(this.props.data, props.data);
-  },
   propTypes: {
     data: React.PropTypes.array.isRequired,
+  },
+  shouldComponentUpdate(props, state) {
+    return !_.isEqual(this.props.data, props.data);
   },
   points() {
     return _.chain(this.props.data).sortBy(function (d) {
