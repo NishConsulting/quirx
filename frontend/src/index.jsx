@@ -114,17 +114,15 @@ let App = React.createClass({
       requests: this.state.requests + 1
     });
 
-    api.events(term, 'date').then((response)=> {
-      if (response.events !== this.state.data) {
-        this.setState({
-          data: response.events,
-          requests: this.state.requests - 1
-        });
-      }
+    api.events({q: term, count: 'date'}).then((response)=> {
+      this.setState({
+        series: [{name: 'total', data: response.events}],
+        requests: this.state.requests - 1
+      });
     });
 
     this.activeFacets().forEach((f)=> {
-      api.events(term, f.name).then((response)=> {
+      api.events({q: term, count: f.name}).then((response)=> {
         if (response.events !== f.data) {
           f.data = response.events;
           let others = this.state.facets.filter(function (facet) {

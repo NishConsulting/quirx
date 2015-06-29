@@ -1,7 +1,9 @@
+import _ from 'lodash';
+
 const get = function (url, query) {
   return new Promise(function (fulfill, reject) {
     const request = new XMLHttpRequest();
-    request.open('GET', url, true);
+    request.open('GET', encodeURI(url), true);
     request.onload = function () {
       if (request.status >= 200 && request.status < 400) {
         fulfill(JSON.parse(request.responseText));
@@ -15,7 +17,6 @@ const get = function (url, query) {
 
 
 /*
-import _ from 'lodash';
 function randInt(i) { return Math.round(Math.random() * i); }
 let stubs = {
   date() {
@@ -36,9 +37,15 @@ let stubs = {
 };
 */
 
+const toQueryString = function (object) {
+  return _.transform(object, function (result, value, key) {
+    result.push(`${key}=${value}`);
+  }, []).join('&');
+};
+
 const api = {
-  events(term, count) {
-    return get(`${API_URL}/events.json?q=${term}&count=${count}`);
+  events(query) {
+    return get(`${API_URL}/events.json?${toQueryString(query)}`);
     // return new Promise(function (fulfill) {
     //   fulfill({
     //     events: stubs[count]()
