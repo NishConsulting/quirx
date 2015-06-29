@@ -13,8 +13,10 @@ module Quirx
       route = env.values_at 'REQUEST_METHOD', 'PATH_INFO'
       code, headers, body = case route.join ' '
                             when %r[^GET /events.json$]
-                              query = CGI.parse(env['QUERY_STRING'])['q'].first
-                              [200, {}, JSON.dump({events: api.events(q: query)})]
+                              query = CGI.parse(env['QUERY_STRING']).map do |k, v|
+                                {k.intern => v.first}
+                              end.reduce :merge
+                              [200, {}, JSON.dump({events: api.events(query)})]
                             else
                               not_found
                             end

@@ -7,11 +7,11 @@ describe Quirx::Event do
 
   describe '#time' do
     it 'includes the epoch version of the silly stamp' do
-      expect(event.time).to eq 12457
+      expect(JSON.parse(event.to_json)['term']).to eq 12457
     end
   end
 
   it 'can has json dump' do
-    expect(JSON.dump([event])).to eq JSON.dump([{"time" => 12457, "count" => 3}])
+    expect(JSON.dump([event])).to eq JSON.dump([{"count" => 3, "term" => 12457}])
   end
 end

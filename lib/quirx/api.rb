@@ -9,10 +9,16 @@ module Quirx
       @uri = URI(uri)
     end
 
-    def events(q: nil)
+    def events(count: :date, q: nil)
+      count = {
+        date:   'receivedate',
+        weight: 'patient.patientweight',
+        sex:    'patient.patientsex',
+        drug:   'patient.drug.medicinalproduct'
+      }.fetch(count.intern)
+
       u = uri.dup
-      u.query = [uri.query, "search=#{search_clause(q)}", 'count=receivedate'].join('&')
-      results = Net::HTTP.get(u)
+      u.query = [uri.query, "search=#{search_clause(q)}", "count=#{count}"].join('&')
       JSON.parse(Net::HTTP.get(u)).fetch("results", []).map(&Event.method(:new))
     end
 

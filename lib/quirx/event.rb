@@ -4,14 +4,19 @@ module Quirx
     attr_reader :data
     def initialize(data)
       @data = data
-    end
-
-    def time
-      Time.strptime(data['time'], '%Y%m%d').strftime('%s').to_i / SEC_PER_DAY
+      if time = data.delete('time')
+        data['term'] = format_time(time)
+      end
     end
 
     def to_json(*)
-      data.merge("time" => time).to_json
+      data.to_json
+    end
+
+    private
+
+    def format_time(time)
+      Time.strptime(time, '%Y%m%d').strftime('%s').to_i / SEC_PER_DAY
     end
   end
 end
