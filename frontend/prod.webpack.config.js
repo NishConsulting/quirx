@@ -7,6 +7,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   output: {
@@ -52,15 +53,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      },
-      {
-        test: /\.less$/,
-        loader: 'style-loader!css-loader!less-loader'
-      },
-      {
-        test: /\.(scss|sass)$/,
-        loader: 'style-loader!css-loader!sass-loader'
+        loader: ExtractTextPlugin.extract('css-loader')
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
@@ -101,6 +94,7 @@ module.exports = {
       filename: '../index.html',
       inject: 'body'
     }),
+    new ExtractTextPlugin("styles.css", {allChucks: true}),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify('production')

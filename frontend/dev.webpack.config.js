@@ -65,15 +65,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      },
-      {
-        test: /\.less$/,
-        loader: 'style-loader!css-loader!less-loader'
-      },
-      {
-        test: /\.(scss|sass)$/,
-        loader: 'style-loader!css-loader!sass-loader'
+        loader: ExtractTextPlugin.extract('css-loader')
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
@@ -116,6 +108,7 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin("styles.css", {allChucks: true}),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify('development')
@@ -124,7 +117,6 @@ module.exports = {
       BROWSER: true,
       API_URL: JSON.stringify(process.env.QUIRX_API_HOST)
     }),
-    new ExtractTextPlugin("styles.css")
   ],
 
   devServer: {
