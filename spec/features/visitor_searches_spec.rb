@@ -6,7 +6,7 @@ Capybara.app_host = ENV['ALLOW_ORIGIN']
 describe 'visitor searches', :js, type: :feature do
   it 'sees a count' do
     visit '/'
-    fill_in 'Search', with: 'adderall'
+    fill_in 'Term', with: 'adderall'
     check 'weight'
     click_on 'Search'
 

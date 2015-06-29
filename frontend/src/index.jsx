@@ -4,6 +4,7 @@ import SexChart from 'sex-chart';
 import WeightChart from 'weight-chart';
 import _ from 'lodash';
 import api from 'api';
+require('./styles.css');
 
 /*
 app:
@@ -32,13 +33,14 @@ let Form = React.createClass({
   },
   render() {
     let facetToggles = _.transform(this.props.facets, function (result, value, name) {
-      result.push(<li key={name}><label>{name}<input ref={name} type='checkbox'/></label></li>);
+      result.push(<li key={name}><label><input ref={name} type='checkbox'/> {name}</label></li>);
     }, []);
     return (
       <form onSubmit={this.search}>
         <fieldset>
-          <label htmlFor='search'>Search</label>
-          <input ref='term' id='search' type='search' autoFocus />
+          <legend>Search</legend>
+          <label htmlFor='search'>Term</label>
+          <input ref='term' id='search' name='term' type='search' autoFocus required />
           <input type='submit' value='Search' />
         </fieldset>
         <fieldset>

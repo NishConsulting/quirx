@@ -1,0 +1,22 @@
+input[type=search] {
+  border: 1px solid #DDD;
+  padding: 5px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+label { display: block; }
+
+ul { padding-left: 0; }
+li {
+  list-style-type: none;
+}
+
+fieldset {
+  border: 1px solid #CCC;
+  margin-bottom: 15px;
+}
+
+#content {
+  font-family: helvetica, sans-serif;
+}

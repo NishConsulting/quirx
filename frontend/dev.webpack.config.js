@@ -6,6 +6,7 @@
 
 var webpack = require('webpack');
 var path = require('path');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   output: {
@@ -122,7 +123,8 @@ module.exports = {
       DEBUG: true,
       BROWSER: true,
       API_URL: JSON.stringify(process.env.QUIRX_API_HOST)
-    })
+    }),
+    new ExtractTextPlugin("styles.css")
   ],
 
   devServer: {
