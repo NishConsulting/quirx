@@ -13,7 +13,7 @@
     "test:watch": "mocha ./test --recursive --reporter spec -w",
     "test:watch:browser": "mocha ./test --recursive --reporter spec -w 2>&1 | report-viewer",
     "server:start": "node server.js",
-    "pack": "webpack --config prod.webpack.config.js -p"
+    "pack": "webpack --config prod.webpack.config.js"
   },
   "author": "Hashrocket",
   "license": "MIT",
