@@ -4,21 +4,27 @@ import _ from 'lodash';
 
 let dateMultiple = 24 * 60 * 60 * 1000;
 
+const normalizePoints = function (data) {
+  return data.map(function (d, i) {
+    return [d.term * dateMultiple, d.count];
+  });
+};
+
 let Chart = React.createClass({
   propTypes: {
-    data: React.PropTypes.array.isRequired,
+    series: React.PropTypes.array.isRequired,
     term: React.PropTypes.string.isRequired
   },
   shouldComponentUpdate(props, state) {
-    return !_.isEqual(this.props.data, props.data);
+    return !_.isEqual(this.props.series, props.series);
   },
-  points() {
-    return this.props.data.map(function (d, i) {
-      return [d.term * dateMultiple, d.count];
-    });
+  totalCount() {
+    return _.find(this.props.series, function (s) {
+      return s.name === 'total';
+    }).data.length;
   },
   title() {
-    return `${this.props.data.length} Adverse Events Matching "${this.props.term}"`;
+    return `${this.totalCount()} Adverse Events Matching "${this.props.term}"`;
   },
   config() {
     return {
@@ -34,14 +40,22 @@ let Chart = React.createClass({
         },
         min: 0
       },
-      series: [{
-        name: this.props.term,
-        data: this.points()
-      }]
+      series: _.map(this.props.series, function (series) {
+        return {
+          name: series.name,
+          data: normalizePoints(series.data)
+        };
+      })
     };
   },
   render() {
-    return (<Highcharts config={this.config()}/>);
+    let chart = '';
+    if (this.totalCount()) {
+      chart = (<Highcharts config={this.config()}/>);
+    }
+    return (<section id='results'>
+            {chart}
+            </section>);
   }
 });
 

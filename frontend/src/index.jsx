@@ -10,11 +10,12 @@ require('./styles.css');
 app:
   pendingRequests: 0
   term: ''
-  activeFacets: ['weight']
-  data: []
+  events:
+    - name: 'total', data: []
+    - name: 'sex', data: []
   facets:
-    - name: 'weight', data: [], active: true
-    - name: 'sex', data
+    - name: 'weight', data: [], active: true, filter: 48.8
+    - name: 'sex', data [], active: true, filter: 0
     - name: 'drug', data
 */
 
@@ -54,23 +55,6 @@ let Form = React.createClass({
   }
 });
 
-let Results = React.createClass({
-  propTypes: {
-    data: React.PropTypes.array.isRequired,
-    term: React.PropTypes.string.isRequired
-  },
-  chart() {
-    let chart = '';
-    if (this.props.data.length) {
-      chart = (
-          <Chart data={this.props.data} term={this.props.term}/>
-      );
-    }
-    return chart;
-  },
-  render() { return (<section id='results'>{this.chart()}</section>); }
-});
-
 let Facets = React.createClass({
   propTypes: {
     data: React.PropTypes.array.isRequired,
@@ -96,11 +80,13 @@ let App = React.createClass({
       requests: 0,
       term: '',
       facets: [
-        {name: 'weight', active: false, data: [] },
-        {name: 'sex', active: false, data: [] }
+        {name: 'weight', active: false, data: [], filter: null},
+        {name: 'sex', active: false, data: [], filter: null}
       ],
-      data: []
+      series: [{name: 'total', data: []}]
     };
+  },
+  filter() {
   },
   formChanged(term, facets) {
     let updatedFacets = this.state.facets.map(function (facet) {
@@ -147,7 +133,7 @@ let App = React.createClass({
     return (
       <main>
         <Form onUserInput={this.formChanged} term={this.state.term} facets={this.facetMap()} />
-        <Results data={this.state.data} term={this.state.term}/>
+        <Chart series={this.state.series} term={this.state.term} />
         <Facets data={this.activeFacets()} />
       </main>
     );
