@@ -9,7 +9,7 @@ module Quirx
       @uri = URI(uri)
     end
 
-    def events(count: :date, q: nil)
+    def events(count: :date, q: nil, sex: nil)
       count = {
         date:   'receivedate',
         weight: 'patient.patientweight',

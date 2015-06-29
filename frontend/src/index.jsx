@@ -10,9 +10,10 @@ require('./styles.css');
 app:
   pendingRequests: 0
   term: ''
-  events:
-    - name: 'total', data: []
-    - name: 'sex', data: []
+  series:
+    total: []
+    sex: []
+    weight: []
   facets:
     - name: 'weight', data: [], active: true, filter: 48.8
     - name: 'sex', data [], active: true, filter: 0
@@ -58,11 +59,15 @@ let Form = React.createClass({
 let Facets = React.createClass({
   propTypes: {
     data: React.PropTypes.array.isRequired,
+    select: React.PropTypes.func.isRequired
+  },
+  changeSex(v) {
+    this.props.select({sex: v});
   },
   chartFor(facet) {
     const charts = {
-      sex: (<SexChart data={facet.data}/>),
-      weight: (<WeightChart data={facet.data}/>),
+      sex: (<SexChart data={facet.data} click={this.changeSex} />),
+      weight: (<WeightChart data={facet.data}/>)
     };
     return charts[facet.name];
   },
@@ -83,7 +88,7 @@ let App = React.createClass({
         {name: 'weight', active: false, data: [], filter: null},
         {name: 'sex', active: false, data: [], filter: null}
       ],
-      series: [{name: 'total', data: []}]
+      series: {total: []}
     };
   },
   filter() {
@@ -102,7 +107,7 @@ let App = React.createClass({
 
     api.events({q: term, count: 'date'}).then((response)=> {
       this.setState({
-        series: [{name: 'total', data: response.events}],
+        series: { total: response.events },
         requests: this.state.requests - 1
       });
     });
@@ -129,12 +134,29 @@ let App = React.createClass({
   activeFacets() {
     return this.state.facets.filter(function (f) { return f.active; });
   },
+  filterByFacet(filter) {
+    const name = _.keys(filter)[0];
+
+    let facet = _.chain(this.state.facets).where({name: name}).first().value();
+    facet.filter = filter[name];
+    this.setState({facets: this.state.facets});
+    api.events(_.merge({q: this.state.term, count: 'date'}, filter))
+    .then((response)=> {
+      this.state.series[name] = response.events;
+      this.setState({series: this.state.series});
+    });
+  },
+  series() {
+    return _.transform(this.state.series, function (result, value, name) {
+      result.push({name: name, data: value});
+    }, []);
+  },
   render() {
     return (
       <main>
         <Form onUserInput={this.formChanged} term={this.state.term} facets={this.facetMap()} />
-        <Chart series={this.state.series} term={this.state.term} />
-        <Facets data={this.activeFacets()} />
+        <Chart series={this.series()} term={this.state.term} />
+        <Facets data={this.activeFacets()} select={this.filterByFacet} />
       </main>
     );
   }
