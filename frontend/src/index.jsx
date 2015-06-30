@@ -12,7 +12,7 @@ app:
   term: ''
   series:
     total: []
-    sex: []
+    'sex: Female': []
     weight: []
   facets:
     - name: 'weight', data: [], active: true, filter: 48.8
@@ -61,8 +61,8 @@ let Facets = React.createClass({
     data: React.PropTypes.array.isRequired,
     select: React.PropTypes.func.isRequired
   },
-  changeSex(v) {
-    this.props.select({sex: v});
+  changeSex(term, label) {
+    this.props.select('sex', term, label);
   },
   chartFor(facet) {
     const charts = {
@@ -134,15 +134,15 @@ let App = React.createClass({
   activeFacets() {
     return this.state.facets.filter(function (f) { return f.active; });
   },
-  filterByFacet(filter) {
-    const name = _.keys(filter)[0];
-
-    let facet = _.chain(this.state.facets).where({name: name}).first().value();
-    facet.filter = filter[name];
+  addSeriesForFacet(facetName, term, label) {
+    let query = {q: this.state.term, count: 'date'};
+    let facet = _.chain(this.state.facets).where({name: facetName}).first().value();
+    facet.filter = term;
     this.setState({facets: this.state.facets});
-    api.events(_.merge({q: this.state.term, count: 'date'}, filter))
+    query[facetName] = term;
+    api.events(query)
     .then((response)=> {
-      this.state.series[name] = response.events;
+      this.state.series[`${facetName}: ${label}`] = response.events;
       this.setState({series: this.state.series});
     });
   },
@@ -156,7 +156,7 @@ let App = React.createClass({
       <main>
         <Form onUserInput={this.formChanged} term={this.state.term} facets={this.facetMap()} />
         <Chart series={this.series()} term={this.state.term} />
-        <Facets data={this.activeFacets()} select={this.filterByFacet} />
+        <Facets data={this.activeFacets()} select={this.addSeriesForFacet} />
       </main>
     );
   }

@@ -35,7 +35,7 @@ describe 'visitor searches', :js, type: :feature do
       end
 
       within '#results .highcharts-legend' do
-        expect(all('text').map(&:text)).to eq ['total', 'sex']
+        expect(all('text').map(&:text)).to eq ['total', 'sex: Female']
       end
     end
   end

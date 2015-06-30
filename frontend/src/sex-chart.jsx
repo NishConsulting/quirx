@@ -34,7 +34,7 @@ const SexChart = React.createClass({
           events: {
             click: (event)=> {
               let sex = event.point.state === 'hover' ? labels.indexOf(event.point.name) : null;
-              this.props.click(sex);
+              this.props.click(sex, event.point.name);
             }
           }
         },
