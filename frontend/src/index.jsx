@@ -41,9 +41,8 @@ let Form = React.createClass({
       <form onSubmit={this.search}>
         <fieldset>
           <legend>Search</legend>
-          <label htmlFor='search'>Term</label>
-          <input ref='term' id='search' name='term' type='search' autoFocus required />
-          <input type='submit' value='Search' />
+          <input ref='term' id='Term' name='term' type='search' autoFocus required />
+          <input className='button' type='submit' value='Search' />
         </fieldset>
         <fieldset>
           <legend>Facets</legend>
