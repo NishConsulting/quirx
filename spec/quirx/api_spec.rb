@@ -22,7 +22,13 @@ describe Quirx::API do
     context 'when count is sex' do
       it 'returns the events grouped by sex' do
         events =  api.events(q: 'adderall', count: 'sex')
-        expect(events.map(&:term)).to match_array 3.times
+        expect(events.map(&:term)).to match_array [0, 1, 2]
+      end
+
+      it 'returns events based on given sex' do
+        total_events    = api.events(q: 'adderall').size
+        filtered_events = api.events(q: 'adderall', sex: '1').size
+        expect(filtered_events).to be < total_events
       end
     end
   end
