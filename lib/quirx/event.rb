@@ -13,6 +13,10 @@ module Quirx
       data.to_json
     end
 
+    def term
+      @data.fetch 'term'
+    end
+
     private
 
     def format_time(time)

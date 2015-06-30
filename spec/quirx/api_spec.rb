@@ -18,5 +18,12 @@ describe Quirx::API do
     it 'returns an empty set when there are no matches' do
       expect(api.events q: 'spiders').to be_empty
     end
+
+    context 'when count is sex' do
+      it 'returns the events grouped by sex' do
+        events =  api.events(q: 'adderall', count: 'sex')
+        expect(events.map(&:term)).to match_array 3.times
+      end
+    end
   end
 end
