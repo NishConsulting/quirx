@@ -8,6 +8,7 @@ var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var buildDate = new Date();
 
 var envOpts = {
   publicPath: '/quirx/assets/',
@@ -103,9 +104,16 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new HtmlWebpackPlugin({
+      title: 'Qui℞',
+      description: 'Qui℞ helps to find spikes in FDA anomaly queries.',
       template: './templates/prod/index.html',
       filename: '../index.html',
-      inject: 'body'
+      buildDate: {
+        unix: buildDate.getTime(),
+        string: buildDate.toString(),
+        date: buildDate.toDateString()
+      },
+      inject: false
     }),
     new ExtractTextPlugin("[name]-[hash].css", {allChucks: true}),
     new webpack.DefinePlugin({
