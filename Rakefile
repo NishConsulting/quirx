@@ -18,6 +18,7 @@ begin
   task serve_frontend: :dotenv do
     frontend_port = URI(ENV.fetch('ALLOW_ORIGIN')).port
     sh("cd frontend && npm install && npm run pack")
+    sh("sed -i.bak s/\\/quirx//g frontend/build/index.html")
     unless listener[frontend_port]
       sh("ruby -run -e httpd -- frontend/build --port=%s &" % frontend_port)
     end
