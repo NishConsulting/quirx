@@ -1,8 +1,9 @@
 input[type=search] {
   border: 1px solid #DDD;
   padding: 5px;
-  display: block;
   margin-bottom: 10px;
+  margin-right: 15px;
+  font-size: 14px;
 }
 
 label { display: block; }
@@ -14,9 +15,39 @@ li {
 
 fieldset {
   border: 1px solid #CCC;
-  margin-bottom: 15px;
 }
 
 #content {
   font-family: helvetica, sans-serif;
+}
+
+#results {
+  margin-top: 3rem;
+}
+
+.button {
+  border-radius: 3px;
+  font-family: "Proxima Nova", "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.2) inset;
+  font-weight: bold;
+  background-color: #008CBA;
+  border-color: #007095;
+  color: #FFFFFF;
+  padding: 0.78889rem 1.27778rem 0.74444rem 1.27778rem;
+  font-size: 0.88889rem;
+  margin: 0 0.5rem 1.11111rem 0;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  -webkit-appearance: none;
+  display: inline-block;
+  transition: background-color 300ms ease-out;
+  line-height: normal;
+  border-style: solid;
+  border-width: 0;
+  position: relative;
+}
+.button:hover, .button:focus {
+  background-color: #007095;
+  color: #FFFFFF;
 }
