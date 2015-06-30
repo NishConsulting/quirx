@@ -107,7 +107,7 @@ module.exports = {
       filename: '../index.html',
       inject: 'body'
     }),
-    new ExtractTextPlugin("styles.css", {allChucks: true}),
+    new ExtractTextPlugin("[name]-[hash].css", {allChucks: true}),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify('production')
