@@ -9,10 +9,23 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+var envOpts = {
+  publicPath: '/quirx/assets/',
+  API_URL: 'http://quirx.herokuapp.com'
+};
+
+if (process.env.CI) {
+  envOpts = {
+    publicPath: '/assets/',
+    API_URL: 'http://localhost:9292'
+  };
+}
+
+
 module.exports = {
   output: {
     path: path.join(__dirname, 'build', 'assets'),
-    publicPath: '/quirx/assets/',
+    publicPath:  envOpts.publicPath,
     filename: "[name]-[hash].js",
     chunkFilename: "[id].chunk.[hash].js",
     pathinfo: true
@@ -101,7 +114,7 @@ module.exports = {
       },
       DEBUG: false,
       BROWSER: true,
-      API_URL: JSON.stringify(process.env.QUIRX_API_HOST)
+      API_URL: JSON.stringify(envOpts.API_URL)
     })
   ],
 

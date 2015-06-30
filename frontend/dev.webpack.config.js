@@ -115,7 +115,7 @@ module.exports = {
       },
       DEBUG: true,
       BROWSER: true,
-      API_URL: JSON.stringify(process.env.QUIRX_API_HOST)
+      API_URL: JSON.stringify("http://localhost:9292")
     }),
   ],
 
