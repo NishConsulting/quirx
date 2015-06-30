@@ -24,8 +24,18 @@ describe 'visitor searches', :js, type: :feature do
       check 'sex'
       click_on 'Search'
 
+      within '#results .highcharts-legend' do
+        expect(all('text').map(&:text)).to eq ['total']
+      end
+
       within '#facets .sex' do
         expect(page).to have_content 'Adverse Events by Sex'
+
+        first('.sex .highcharts-series path').click
+      end
+
+      within '#results .highcharts-legend' do
+        expect(all('text').map(&:text)).to eq ['total', 'sex']
       end
     end
   end
