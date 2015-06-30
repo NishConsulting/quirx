@@ -4,10 +4,9 @@ require 'capybara/rspec'
 Capybara.app_host = ENV['ALLOW_ORIGIN']
 
 describe 'visitor searches', :js, type: :feature do
-  it 'sees a count' do
+  specify 'visitor sees totals chart' do
     visit '/'
     fill_in 'Term', with: 'adderall'
-    check 'weight'
     click_on 'Search'
 
     within '#results svg' do
@@ -16,9 +15,18 @@ describe 'visitor searches', :js, type: :feature do
       end
       expect(page).to have_selector 'g.highcharts-series path'
     end
+  end
 
-    within '#facets .weight' do
-      expect(page).to have_content 'Adverse Events by Weight'
+  context 'sex bucket' do
+    specify 'visitor adds sex series to totals chart' do
+      visit '/'
+      fill_in 'Term', with: 'adderall'
+      check 'sex'
+      click_on 'Search'
+
+      within '#facets .sex' do
+        expect(page).to have_content 'Adverse Events by Sex'
+      end
     end
   end
 end
