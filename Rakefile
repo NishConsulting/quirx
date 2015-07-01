@@ -61,6 +61,19 @@ begin
     end
   end
 
+  namespace :serve do
+    task frontend: :dotenv do
+      Dir.chdir 'frontend' do
+        sh("npm install")
+        sh("npm run server:start")
+      end
+    end
+
+    task backend: :dotenv do
+      sh("bundle exec rackup")
+    end
+  end
+
   task deploy: %i[deploy:frontend deploy:backend]
 rescue LoadError
 end
