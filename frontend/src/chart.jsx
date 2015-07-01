@@ -41,10 +41,15 @@ let Chart = React.createClass({
         min: 0
       },
       series: _.map(this.props.series, function (series) {
-        return {
+        let config = {
           name: series.name,
           data: normalizePoints(series.data)
         };
+
+        if (series.name === 'total') {
+          config.color = 'chartreuse';
+        }
+        return config;
       })
     };
   },
