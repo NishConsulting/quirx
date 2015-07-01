@@ -2,7 +2,7 @@
 
 ## Prototype
 
-See our prototype at [prototype](https://nishconsulting.github.io/quirx)
+See our prototype at https://nishconsulting.github.io/quirx
 
 # Qui℞
 Qui℞ finds spikes in FDA anomaly queries and guesses at their causes
