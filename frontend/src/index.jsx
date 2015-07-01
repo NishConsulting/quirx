@@ -1,9 +1,9 @@
 import React from 'react';
 import Chart from 'chart';
-import SexChart from 'sex-chart';
-import WeightChart from 'weight-chart';
-import _ from 'lodash';
+import Facets from 'facets';
+import Form from 'form';
 import api from 'api';
+import _ from 'lodash';
 require('./styles.css');
 
 /*
@@ -19,65 +19,6 @@ app:
     - name: 'sex', data [], active: true, filter: 0
     - name: 'drug', data
 */
-
-let Form = React.createClass({
-  propTypes: {
-    onUserInput: React.PropTypes.func.isRequired,
-    term: React.PropTypes.string.isRequired,
-    facets: React.PropTypes.object.isRequired
-  },
-  search(e) {
-    e.preventDefault();
-    let updatedFacets = _.transform(this.props.facets, (result, value, name)=> {
-      result[name] = this.refs[name].getDOMNode().checked;
-    });
-    this.props.onUserInput(this.refs.term.getDOMNode().value, updatedFacets);
-  },
-  render() {
-    let facetToggles = _.transform(this.props.facets, function (result, value, name) {
-      result.push(<li key={name}><label><input ref={name} type='checkbox'/> {name}</label></li>);
-    }, []);
-    return (
-      <form onSubmit={this.search}>
-        <fieldset>
-          <legend>Search</legend>
-          <input ref='term' id='Term' name='term' type='search' autoFocus required />
-          <input className='button' type='submit' value='Search' />
-        </fieldset>
-        <fieldset>
-          <legend>Facets</legend>
-          <ul>
-            {facetToggles}
-          </ul>
-        </fieldset>
-      </form>
-    );
-  }
-});
-
-let Facets = React.createClass({
-  propTypes: {
-    data: React.PropTypes.array.isRequired,
-    select: React.PropTypes.func.isRequired
-  },
-  changeSex(term, label) {
-    this.props.select('sex', term, label);
-  },
-  chartFor(facet) {
-    const charts = {
-      sex: (<SexChart data={facet.data} click={this.changeSex} />),
-      weight: (<WeightChart data={facet.data}/>)
-    };
-    return charts[facet.name];
-  },
-  render() {
-    let items = this.props.data.map((facet)=> {
-      return (<li className={facet.name} key={facet.name}>{this.chartFor(facet)}</li>);
-    });
-    return (<ul id='facets'>{items}</ul>);
-  }
-});
-
 let App = React.createClass({
   getInitialState() {
     return {
