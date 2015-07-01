@@ -7,8 +7,10 @@ describe Quirx::API do
   end
 
   describe '#events' do
-    it 'returns time series without search' do
-      expect(api.events.size).to eq 3668
+    it 'raises without search' do
+      expect do
+        api.events.size
+      end.to raise_error described_class::MalformedRequestError
     end
 
     it 'returns time series for a given search' do
@@ -25,11 +27,18 @@ describe Quirx::API do
         expect(events.map(&:term)).to match_array [0, 1, 2]
       end
 
-      it 'returns events based on given sex' do
-        total_events    = api.events(q: 'adderall').size
-        filtered_events = api.events(q: 'adderall', sex: '1').size
-        expect(filtered_events).to be < total_events
-      end
+    end
+
+    it 'filters by sex' do
+      total_events    = api.events(q: 'adderall').size
+      filtered_events = api.events(q: 'adderall', sex: '1').size
+      expect(filtered_events).to be < total_events
+    end
+
+    it 'filters by weight range' do
+      total_events    = api.events(q: 'adderall').size
+      filtered_events = api.events(q: 'adderall', weight: '95..100').size
+      expect(filtered_events).to be < total_events
     end
   end
 end
