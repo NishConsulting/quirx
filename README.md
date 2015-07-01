@@ -4,6 +4,22 @@
 Qui℞ helps with finding spikes in FDA anomalies when trying to research and explain their causes.
 See our prototype at http://nishconsulting.github.io/quirx
 
+## Development
+
+1. Clone the repo `git clone https://github.com/NishConsulting/quirx.git`
+
+## Testing
+
+Qui℞ uses Rspec for unit/integration testing. You can run the tests by typing `rake`
+
+## Deployment
+
+## Open Source
+
+## Process
+
+## License
+
 ## Project tracker
 
 We are using [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/1370420) to manage this project.
