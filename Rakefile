@@ -10,61 +10,62 @@ begin
     system ("lsof -i tcp:%s" % pid), out: "/dev/null", err: "/dev/null"
   }
 
-  task ensure_rack: :dotenv do
-    rack_port = URI(ENV.fetch('QUIRX_API_HOST')).port
-    spawn("bundle exec rackup") unless listener[rack_port]
-  end
+  namespace :ci do
+    task ensure_rack: :dotenv do
+      spawn("bundle exec rackup") unless listener[9292]
+    end
 
-  task serve_frontend: :dotenv do
-    frontend_port = URI(ENV.fetch('ALLOW_ORIGIN')).port
-    sh("cd frontend && npm install && npm run pack")
-    unless listener[frontend_port]
-      sh("ruby -run -e httpd -- frontend/build --port=%s &" % frontend_port)
+    task serve_frontend: 'frontend:build' do
+      frontend_port = URI(ENV.fetch('ALLOW_ORIGIN')).port
+      spawn("ruby -run -e httpd -- frontend/build --port=%s" % frontend_port) unless listener[frontend_port]
     end
   end
 
-  task ci: %i[serve_frontend ensure_rack spec]
+  task ci: %i[ci:serve_frontend ci:ensure_rack spec]
 
   task default: :spec
 
   namespace :deploy do
-    task frontend: %i[frontend:clean frontend:build frontend:commit]
+    task frontend: %i[frontend:build frontend:commit]
 
     task :backend do
       sh("git push -f heroku master")
     end
-
   end
+  task deploy: %i[deploy:frontend deploy:backend]
 
   namespace :frontend do
-    task build: :dotenv do
-      sh("cd frontend && npm run pack")
-    end
-
-    task :clean do
-      sh("rm -rf frontend/build")
-    end
-
-    task :clone do
-      sh("git clone -b gh-pages git@github.com:hashrocketeer/quirx.git temp-gh-pages")
-    end
-
-    task commit: :clone do
-      Dir.chdir 'temp-gh-pages' do
-        sh("cp -r ../frontend/build/* .")
-        sh("cp ../frontend/src/favicon.ico .")
-        sh("git add -A")
-        sh("git commit -m 'deploy frontend'")
-        sh("git push")
+    task install: :dotenv do
+      Dir.chdir 'frontend' do
+        sh("npm install")
       end
-      sh("rm -rf temp-gh-pages")
+    end
+
+    task build: :install do
+      Dir.chdir 'frontend' do
+        sh("npm run pack")
+      end
+    end
+
+    task :commit do
+      sh("git clone -b gh-pages git@github.com:nishconsulting/quirx.git temp-gh-pages")
+      begin
+        Dir.chdir 'temp-gh-pages' do
+          sh("cp -r ../frontend/build/* .")
+          sh("cp ../frontend/src/favicon.ico .")
+          sh("git add -A")
+          sh("git commit -m 'deploy frontend'")
+          sh("git push")
+        end
+      ensure
+        sh("rm -rf temp-gh-pages")
+      end
     end
   end
 
   namespace :serve do
-    task frontend: :dotenv do
+    task frontend: 'frontend:install' do
       Dir.chdir 'frontend' do
-        sh("npm install")
         sh("npm run server:start")
       end
     end
@@ -74,6 +75,5 @@ begin
     end
   end
 
-  task deploy: %i[deploy:frontend deploy:backend]
 rescue LoadError
 end
