@@ -30,8 +30,7 @@ fieldset {
   font-family: "Proxima Nova", "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.2) inset;
   font-weight: bold;
-  background-color: #008CBA;
-  border-color: #007095;
+  background-color: #9FA0A0;
   color: #FFFFFF;
   padding: 0.78889rem 1.27778rem 0.74444rem 1.27778rem;
   font-size: 0.88889rem;
@@ -46,8 +45,8 @@ fieldset {
   border-style: solid;
   border-width: 0;
   position: relative;
+  text-shadow: -1px 0px 1px #666;
 }
 .button:hover, .button:focus {
-  background-color: #007095;
-  color: #FFFFFF;
+  background-color: #7B7B7B;
 }
