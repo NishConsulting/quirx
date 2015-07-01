@@ -6,7 +6,14 @@ See our prototype at http://nishconsulting.github.io/quirx
 
 ## Development
 
-1. Clone the repo `git clone https://github.com/NishConsulting/quirx.git`
+1. Clone the repo: `git clone https://github.com/NishConsulting/quirx.git`
+2. Setup the environment variables using the `.env` file: `cp .env{.example,}`
+3. Edit the variables to include your OpenFDA API key. Instructions are found in `.env.example`
+4. Install the RubyGems: `bundle`
+5. Start the backend server: `rake backend:start`
+6. Start the frontend server: `rake frontend:start`
+
+Then you can visit `http://localhost:9999` in your browser
 
 ## Testing
 
