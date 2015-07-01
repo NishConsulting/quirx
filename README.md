@@ -14,11 +14,25 @@ Qui℞ uses Rspec for unit/integration testing. You can run the tests by typing 
 
 ## Deployment
 
+Qui℞ uses rake to deploy both the frontend and the backend. There are 3 main deploy tasks available.
+
+1. `rake deploy` - Run task 2 and 3.
+2. `rake deploy:backend` - Only deploy the backend
+3. `rake deploy:frontend` - Only deploy the frontend
+
 ## Open Source
+
+Qui℞ is and Open Source project and also utilizes the following Open Source tools:
+
+1. [dotenv](https://github.com/bkeepers/dotenv)
+2. [git](https://git-scm.com/)
+3. [Ruby on Rails](http://rubyonrails.org/)
 
 ## Process
 
 ## License
+
+Qui℞ is Copyright © 2015 Nish Consulting. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
 
 ## Project tracker
 
