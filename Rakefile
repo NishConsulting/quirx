@@ -52,6 +52,7 @@ begin
     task commit: :clone do
       Dir.chdir 'temp-gh-pages' do
         sh("cp -r ../frontend/build/* .")
+        sh("cp ../frontend/src/favicon.ico .")
         sh("git add -A")
         sh("git commit -m 'deploy frontend'")
         sh("git push")
