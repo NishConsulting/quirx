@@ -37,6 +37,8 @@ Qui℞ is and Open Source project and also utilizes the following Open Source to
 
 ## Process
 
+[See Process](docs/process.md)
+
 ## License
 
 Qui℞ is Copyright © 2015 Nish Consulting. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.
