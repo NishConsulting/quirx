@@ -21,6 +21,13 @@ Qui℞ uses Rspec for unit/integration testing. In order to run the tests, you n
 
 ## Deployment
 
+### Hosting
+
+Qui℞ is currently hosted on two platforms: the backend is deployed to PaaS provider [Heroku](https://heroku.com).
+The frontend is hosted by [GitHub Pages](https://pages.github.com/).
+
+### Tasks
+
 Qui℞ uses rake to deploy both the frontend and the backend. There are 3 main deploy tasks available.
 
 1. `rake deploy` - Run task 2 and 3.
