@@ -17,7 +17,7 @@ Then you can visit `http://localhost:9999` in your browser
 
 ## Testing
 
-Qui℞ uses Rspec for unit/integration testing. You can run the tests by typing `rake`
+Qui℞ uses Rspec for unit/integration testing. In order to run the tests, you need to have both the frontend and backend servers running (`rake backend:start` and `rake frontend:start`). Then you can run the tests by typing `rake`
 
 ## Deployment
 
