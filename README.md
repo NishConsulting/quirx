@@ -32,9 +32,8 @@ Qui℞ uses rake to deploy both the frontend and the backend. There are 3 main d
 Qui℞ is and Open Source project and also utilizes the following Open Source tools:
 
 1. [dotenv](https://github.com/bkeepers/dotenv)
-2. [git](https://git-scm.com/)
-3. [Ruby on Rails](http://rubyonrails.org/)
 4. [Rack](http://rack.github.io/)
+5. [React](http://facebook.github.io/react/)
 
 ## Process
 
