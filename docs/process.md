@@ -17,9 +17,29 @@ The development pair shared full-stack responsibilities, including:
 * Backend Web Developer
 * DevOps Engineer
 
-## Project tracker
+## Approach
 
-We are using [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/1370420) to manage this project.
+### Kickoff
+
+We used an agile approach in solving this problem. The first challenge was to define the feature set. For this we first assigned a 🐳 the role of stakeholder. Then we held a story-carding session where we reviewed the FDA challenge and brainstormed a solution.
+
+![brainstorm](brainstorming.jpg)
+
+This process was informed by exploring the capabilities of the Open FDA API. We read some documentation, then dug in with curl.
+
+![api](explore-api.jpg)
+
+We chose to develop a tool that allows users to search for peaks in adverse event reports. The first iteration of the user interface was a whiteboard sketch.
+
+![whiteboard](whiteboard.jpg)
+
+Once we had a general idea of the direction we wanted to go, it was time to capture some user stories. We did this with [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/1370420). Follow that link to see what we came up with.
+
+### Iterate
+
+Each morning we held a brief stand-up meeting to ensure we were working on the most important things.
+
+As the project began to take shape over the next couple of days, we relied on feedback from our appointed stakeholder to shape the priorities and direction we took. For example, we had a story about highlighting the peaks of charts. After our stakeholder saw the data, he realised that the peaks were apparent without highlighting. We were able to change direction and focus our attention on the things that mattered most to our stakeholder.
 
 ## Monitoring
 
