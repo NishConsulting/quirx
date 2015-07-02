@@ -21,7 +21,7 @@ The development pair shared full-stack responsibilities, including:
 
 ### Kickoff
 
-We used an agile approach in solving this problem. The first challenge was to define the feature set. For this we first assigned a 🐳 the role of stakeholder. Then we held a story-carding session where we reviewed the FDA challenge and brainstormed a solution.
+We used an agile approach in solving this problem. The first challenge was to define the feature set. For this we first assigned a collegue the role of stakeholder. Then we held a story-carding session where we reviewed the FDA challenge and brainstormed a solution.
 
 ![brainstorm](brainstorming.jpg)
 
