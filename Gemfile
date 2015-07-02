@@ -6,6 +6,8 @@ gem 'puma'
 gem 'rack'
 gem 'rake'
 
+gem 'newrelic_rpm'
+
 group :test do
   gem 'rspec'
   gem 'capybara'
