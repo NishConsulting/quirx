@@ -37,7 +37,7 @@ Qui℞ is and Open Source project and also utilizes the following Open Source to
 
 ## Process
 
-[See Process](docs/process.md)
+See [Process](docs/process.md)
 
 ## License
 
