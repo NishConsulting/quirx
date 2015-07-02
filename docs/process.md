@@ -2,9 +2,9 @@
 
 ## Leadership
 
-For Team NISH, authority, responsibility, and accountability for project quality is somewhat distributed. We assigned a product manager for Quirx prototype. The primary responsibility of the product manager was Quirx prototype health.
+For Team NISH, authority, responsibility, and accountability for project quality is somewhat distributed. We assigned a product manager for Qui℞ prototype. The primary responsibility of the product manager was Qui℞ prototype health.
 
-Throughout the development of Quirx prototype, our Product Manager ensured that:
+Throughout the development of Qui℞ prototype, our Product Manager ensured that:
 
 * everyone is heard
 
