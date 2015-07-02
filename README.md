@@ -42,8 +42,3 @@ Qui℞ is and Open Source project and also utilizes the following Open Source to
 ## License
 
 Qui℞ is Copyright © 2015 Nish Consulting. It is free software, and may be redistributed under the terms specified in the [LICENSE](LICENSE) file.
-
-## Project tracker
-
-We are using [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/1370420) to manage this project.
-
