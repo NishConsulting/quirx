@@ -31,10 +31,18 @@ Qui℞ uses rake to deploy both the frontend and the backend. There are 3 main d
 
 Qui℞ is and Open Source project and also utilizes the following Open Source tools:
 
+**Backend**
+
 1. [Ruby](https://www.ruby-lang.org/en/)
 2. [Rack](http://rack.github.io/)
+
+**Frontend**
+
 3. [React](http://facebook.github.io/react/)
 4. [HighCharts](http://www.highcharts.com/)
+
+**Build**
+
 5. [Rake](https://github.com/ruby/rake)
 6. [Webpack](http://webpack.github.io/)
 
