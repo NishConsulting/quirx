@@ -2,15 +2,9 @@
 
 ## Leadership
 
-For Team NISH, authority, responsibility, and accountability for project quality is somewhat distributed. We assigned a product manager for Qui℞ prototype. The primary responsibility of the product manager was Qui℞ prototype health.
+For Team NISH, authority, responsibility, and accountability for project quality was the purview of the project manager.
 
-Throughout the development of Qui℞ prototype, our Product Manager ensured that:
-
-* everyone is heard
-
-* there are few surprises - roadblocks are communicated as early as possible
-
-This means ensuring that the clients needs are being addressed in the most efficient manner. Project health also includes developer 
+We assigned a product manager for Qui℞ prototype. The primary responsibility of the product manager was Qui℞ prototype health. Throughout the development of Qui℞ prototype, our product manager ensured that everyone was heard and all roadblocks were communicated as early as possible. They gathered questions from the development team and retrieved answers from the client, f18.
 
 ## Project tracker
 
