@@ -2,9 +2,9 @@
 
 ## Leadership
 
-At Hashrocket, authority, responsibility, and accountability for project quality is somewhat distributed. We assign each project a project manager. Their primary responsibility is project health.
+For Team NISH, authority, responsibility, and accountability for project quality is somewhat distributed. We assigned a product manager for Quirx prototype. The primary responsibility of the product manager was Quirx prototype health.
 
-Attributes of a healthy project:
+Throughout the development of Quirx prototype, our Product Manager ensured that:
 
 * everyone is heard
 
