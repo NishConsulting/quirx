@@ -1,7 +1,7 @@
 [![Build Status](https://api.travis-ci.org/NishConsulting/quirx.svg?branch=master)](https://travis-ci.org/NishConsulting/quirx)
 
 # ADS-I-BPA-Development-Prototype
-NISH Consulting Inc Response to RFQ 4QTFHS150004 for Agile Delivery Services (ADS I) BPA 
+Team NISH [NISH Consulting Inc](http://www.nishconsulting.com) Response to RFQ 4QTFHS150004 for Agile Delivery Services (ADS I) BPA 
 Pool 2: Development :pill: Qui℞
 
 # :pill: Qui℞
