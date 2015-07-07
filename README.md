@@ -1,8 +1,7 @@
 [![Build Status](https://api.travis-ci.org/NishConsulting/quirx.svg?branch=master)](https://travis-ci.org/NishConsulting/quirx)
 
 # ADS-I-BPA-Development-Prototype
-Team NISH [NISH Consulting Inc](http://www.nishconsulting.com) Response to RFQ 4QTFHS150004 for Agile Delivery Services (ADS I) BPA 
-Pool 2: Development :pill: Qui℞
+Team NISH consisting of [NISH Consulting Inc](http://www.nishconsulting.com) and [Hashrocket](http://www.hashrocket.com) response to RFQ 4QTFHS150004 for Agile Delivery Services (ADS I) BPA Pool 2: Development :pill: Qui℞
 
 # :pill: Qui℞
 Qui℞ helps with finding spikes in FDA anomalies when trying to research and explain their causes.
